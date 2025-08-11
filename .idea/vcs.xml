@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/day04-cross-sectional-momentum" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/day04_xs_momentum" vcs="Git" />
   </component>
 </project>
