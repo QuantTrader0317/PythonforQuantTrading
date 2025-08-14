@@ -1,106 +1,82 @@
-# Python for Quant — Learning in Public (Days 3–5)
+# Python for Quant Trading — Learning Journey
 
-Straightforward, reproducible quant projects. Clean code, charts, CSV outputs. Built as part of my doctoral work in Finance and my transition into quantitative trading.
+This repository documents my hands-on journey from finance management into quantitative trading & research, leveraging Python, statistical modeling, and strategy backtesting.
 
-## Repo Structure
-python-for-quant/
-├─ day03_backtest/
-│ ├─ backtest.py
-│ ├─ README.md
-│ ├─ requirements.txt
-│ └─ charts/, outputs/
-├─ day04_xs_momentum/
-│ ├─ xs_momentum.py
-│ ├─ README.md
-│ ├─ requirements.txt
-│ └─ charts/, outputs/
-├─ day05_walkforward/
-│ ├─ day05_walkforward.py
-│ ├─ README.md
-│ ├─ requirements.txt
-│ └─ charts/, outputs/
-└─ README.md ← (this file)
+---
 
+## 📅 Day 3 — First Momentum Backtest
+- **Goal:** Build a simple cross-sectional momentum strategy using historical price data.
+- **What I learned:**
+  - Download & preprocess stock data
+  - Calculate momentum signals
+  - Equal-weight portfolio construction
+  - Backtest performance metrics
+- **Key output:** Equity curve showing momentum vs. benchmark
 
-## Quickstart (Windows / PowerShell)
-> Each day has its **own** `requirements.txt`. Activate a venv per day or reuse one and install the day’s requirements before running.
+---
 
-```bash
-# Example: run Day 4
-cd day04_xs_momentum
-python -m venv .venv
-. .venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python xs_momentum.py
+## 📅 Day 4 — Cross-Sectional Momentum Refinement
+- **Goal:** Improve the Day 3 strategy by refining the ranking & portfolio weighting logic.
+- **What I learned:**
+  - Handle submodules & repository structure in Git
+  - More robust signal ranking and portfolio rebalancing
+  - How to avoid Git pitfalls when working across multiple project folders
+- **Key output:** Cleaner, more accurate equity curve with improved rebalance logic
 
-Projects
-Day 3 — Multi-Asset Equal-Weight Backtest
-What: Equal-weight portfolio with monthly/quarterly rebalance, transaction costs, cash drag, optional vol targeting.
+---
 
-Run:
-cd day03_backtest
-. .venv\Scripts\Activate.ps1   # or create one as above
-pip install -r requirements.txt
-python backtest.py
-Outputs: charts/portfolio_eqcurve.png, outputs/*.csv
+## 📅 Day 5 — Equal-Weight Portfolio vs Buy & Hold
+- **Goal:** Compare a regularly rebalanced equal-weight portfolio against a Buy & Hold strategy (net of costs & cash).
+- **What I learned:**
+  - Side-by-side performance analysis
+  - Implementing transaction cost assumptions
+  - Measuring impact of rebalancing on returns
+- **Key output:** Overlaid equity curves — rebalanced portfolio vs buy & hold
 
-Docs: Day 3 README
+---
 
-Day 4 — Cross-Sectional Momentum (12–1)
-What: Rank universe by 12-1 momentum (skip 1 month), long top-N, equal weight. Costs + cash drag.
+## 📅 Day 6 — Grid Search + Walk-Forward Optimization
+- **Goal:** Automate hyperparameter tuning for strategy lookback, skip periods, and top-N asset selection.
+- **What I learned:**
+  - Grid search to find best parameter combinations
+  - Walk-forward validation to reduce overfitting risk
+  - How to interpret performance tables from multiple training periods
+- **Key output:** Optimal strategy parameters for each walk-forward segment
 
-Run:
-cd day04_xs_momentum
-. .venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python xs_momentum.py
-Outputs: charts/xs_mom_equity.png, outputs/*.csv
+---
 
-Docs: Day 4 README
+## 📅 Day 7 — Multi-Factor Strategy (Momentum + Volatility Filter)
+- **Goal:** Combine multiple factors into a composite signal and test its predictive power.
+- **What I learned:**
+  - Calculate an **Information Coefficient (IC)** between signals & forward returns
+  - Filter stocks using both momentum rank and volatility thresholds
+  - Build a multi-factor equity curve
+- **Performance Metrics:**
+  - **CAGR:** 39.48%
+  - **Volatility:** 53.53%
+  - **Sharpe Ratio:** 0.70
+  - **Max Drawdown:** -61.55%
+  - **Hit Rate:** 53.31%
+- **Key output:**  
+  - IC time series chart (signal quality over time)  
+  - Multi-factor strategy equity curve
 
-Day 5 — Walk-Forward Testing (Out-of-Sample)
-What: Rolling train → test → roll. Pick best top-N in-sample by Sharpe, apply OOS. Stitches all OOS periods and reports aggregate results.
+---
 
-Run (default 5y/1y, monthly):
-cd day05_walkforward
-. .venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python day05_walkforward.py
+## 📂 Outputs
+- **Charts:** `/charts/`
+- **Data:** `/outputs/`
+- **Scripts:** `/dayXX-*` folders
+- **Dependencies:** See `requirements.txt`
 
-Custom example:
+---
 
-python day05_walkforward.py --train_years 6 --test_years 2 --top_grid 3,5,7 --reb Q --rf 0.03 --tc_bps 15
+## 🚀 Next Steps
+- Factor weighting optimization
+- Regime switching logic
+- Position sizing based on volatility
+- Integration of additional alpha signals
 
-Debug mode (see picks & contributions per rebalance):
-python day05_walkforward.py --debug
+---
 
-Outputs:
-
-charts/wf_oos_equity.png (stitched OOS equity)
-
-outputs/wf_period_results.csv (per-period metrics + chosen top-N)
-
-outputs/wf_oos_daily_returns.csv (stitched OOS returns)
-
-Docs: Day 5 README
-
-Tips
-Charts in README: After running a day once, commit the charts/*.png so GitHub renders previews inside each day’s README.
-
-No pandas warnings: Code maps M→ME, Q→QE under the hood (safe_freq).
-
-Repro: Data via yfinance (adjusted close). For papers, pin versions or cache data.
-
-Roadmap (Next)
-Day 6: Parameter stability heatmaps (across time + universes)
-
-Day 7: Volatility filter / regime switch
-
-Day 8: Transaction-cost sensitivity & slippage models
-
-Day 9: Cross-asset combo (momentum + carry)
-
-Day 10: Simple risk parity wrapper
-
-Research Context
-This series supports my doctoral research in Finance on how systematic methods and disciplined validation (e.g., walk-forward) improve portfolio robustness. It’s also my public build toward quant trading and research roles.
+**Disclaimer:** Educational purposes only. Not financial advice.

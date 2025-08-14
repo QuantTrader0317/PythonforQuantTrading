@@ -1,0 +1,6 @@
+# `requirements.txt`
+pandas>=2.2
+numpy>=1.26
+yfinance>=0.2.52
+matplotlib>=3.8
+scipy>=1.11
