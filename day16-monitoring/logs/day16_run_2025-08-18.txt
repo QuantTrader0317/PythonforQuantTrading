@@ -1,0 +1,19 @@
+[2025-08-18] 12 orders written to orders\orders_2025-08-18.csv
+metrics: outputs\day16_metrics_2025-08-18.csv
+chart:   charts\day16_report_2025-08-18.png
+{
+  "tickers": [
+    "XLB",
+    "XLE",
+    "XLF",
+    "XLI",
+    "XLK",
+    "XLP",
+    "XLU",
+    "XLV",
+    "XLY",
+    "XLC",
+    "TLT",
+    "GLD"
+  ]
+}
